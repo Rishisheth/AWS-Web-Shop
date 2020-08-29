@@ -1,0 +1,150 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-awsamplifyecommerce-practice-171921-authRole",
+			"UnauthRoleArn": "arn:aws:iam::309665100639:role/amplify-awsamplifyecommerce-practice-171921-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::309665100639:role/amplify-awsamplifyecommerce-practice-171921-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-awsamplifyecommerce-practice-171921-deployment",
+			"UnauthRoleName": "amplify-awsamplifyecommerce-practice-171921-unauthRole",
+			"StackName": "amplify-awsamplifyecommerce-practice-171921",
+			"StackId": "arn:aws:cloudformation:us-east-1:309665100639:stack/amplify-awsamplifyecommerce-practice-171921/4fc1b160-ea3d-11ea-913e-0e9c8848c400",
+			"AmplifyAppId": "d32w5wjrmpa28k"
+		}
+	},
+	"auth": {
+		"awsamplifyecommerceauth": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-awsamplifyecommerce-practice-171921-deployment/amplify-cfn-templates/auth/awsamplifyecommerceauth-cloudformation-template.yml",
+				"logicalId": "authawsamplifyecommerceauth"
+			},
+			"lastPushTimeStamp": "2020-08-29T21:53:17.552Z",
+			"output": {
+				"AppClientSecret": "lv14fl1rm5s44dfv4hsq7n0hn8rrv7dehhlrl6ls5r2js07j5n",
+				"UserPoolId": "us-east-1_liQm3MZn6",
+				"AppClientIDWeb": "4dlt4knmvkkebhm7nsas6tgml4",
+				"AppClientID": "1qg2f536u7ia1stb1fof207732",
+				"IdentityPoolId": "us-east-1:8674e082-6b2f-4c71-9e77-f9a5448b5048",
+				"IdentityPoolName": "awsamplifyecommerceauth_ip__practice",
+				"UserPoolName": "awsamplifyecommerceauth_up"
+			},
+			"lastPushDirHash": "cikf2csxZZZqoGeNR68kwyvhfRo="
+		}
+	},
+	"analytics": {
+		"awsamplifyecommerce": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-awsamplifyecommerce-practice-171921-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
+				"logicalId": "analyticsawsamplifyecommerce"
+			},
+			"lastPushTimeStamp": "2020-08-29T21:53:17.554Z",
+			"output": {
+				"appName": "awsamplifyecommerce-practice",
+				"Region": "us-east-1",
+				"Id": "5eabec8de3e84b66b6a10b791349bb1a"
+			},
+			"lastPushDirHash": "z/SYm5v/ziai3HlkwjBoRUVY0pc="
+		}
+	},
+	"storage": {
+		"dynamodbitems": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-awsamplifyecommerce-practice-171921-deployment/amplify-cfn-templates/storage/dynamodbitems-cloudformation-template.json",
+				"logicalId": "storagedynamodbitems"
+			},
+			"lastPushTimeStamp": "2020-08-29T21:53:17.556Z",
+			"output": {
+				"PartitionKeyName": "id",
+				"Region": "us-east-1",
+				"Arn": "arn:aws:dynamodb:us-east-1:309665100639:table/awsamplifyecommerce-items-practice",
+				"StreamArn": "arn:aws:dynamodb:us-east-1:309665100639:table/awsamplifyecommerce-items-practice/stream/2020-08-29T21:31:20.488",
+				"PartitionKeyType": "N",
+				"Name": "awsamplifyecommerce-items-practice"
+			},
+			"lastPushDirHash": "VJ+rsCMFXQXiG8c0wCVzZEhgLeY="
+		}
+	},
+	"function": {
+		"lambdaitems": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "dynamodbitems",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2020-08-29T21:30:00.039Z",
+			"lastPackageTimeStamp": "2020-08-29T21:30:02.600Z",
+			"distZipFilename": "lambdaitems-5662514e695742506248-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-awsamplifyecommerce-practice-171921-deployment/amplify-cfn-templates/function/lambdaitems-cloudformation-template.json",
+				"logicalId": "functionlambdaitems"
+			},
+			"lastPushTimeStamp": "2020-08-29T21:53:17.557Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:309665100639:function:awsamplifyecommerce-items-practice",
+				"Name": "awsamplifyecommerce-items-practice",
+				"LambdaExecutionRole": "awsamplifyecommerceLambdaRole9cbc3411-practice"
+			},
+			"lastPushDirHash": "jY5jOjrzfCiiEpfQanNIPPqE4YM="
+		}
+	},
+	"api": {
+		"awsamplifyecommerceapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "lambdaitems",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-awsamplifyecommerce-practice-171921-deployment/amplify-cfn-templates/api/awsamplifyecommerceapi-cloudformation-template.json",
+				"logicalId": "apiawsamplifyecommerceapi"
+			},
+			"lastPushTimeStamp": "2020-08-29T21:53:17.558Z",
+			"output": {
+				"ApiName": "awsamplifyecommerceapi",
+				"RootUrl": "https://0vmzyi3ned.execute-api.us-east-1.amazonaws.com/practice"
+			},
+			"lastPushDirHash": "gE2izlmHlWAAta1x4CTsUboHjdk="
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-awsamplifyecommerce-practice-171921-deployment/amplify-cfn-templates/hosting/template.json",
+				"logicalId": "hostingS3AndCloudFront"
+			},
+			"lastPushTimeStamp": "2020-08-29T21:53:17.563Z",
+			"output": {
+				"S3BucketSecureURL": "https://awsamplifyecommerce-20200829175038-hostingbucket-practice.s3.amazonaws.com",
+				"WebsiteURL": "http://awsamplifyecommerce-20200829175038-hostingbucket-practice.s3-website-us-east-1.amazonaws.com",
+				"Region": "us-east-1",
+				"HostingBucketName": "awsamplifyecommerce-20200829175038-hostingbucket-practice"
+			},
+			"lastPushDirHash": "mDdk2qn0T+ShXOv3LYtXj8eCgWk="
+		}
+	}
+}

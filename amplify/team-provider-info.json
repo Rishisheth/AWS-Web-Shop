@@ -1,0 +1,23 @@
+{
+    "practice": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-awsamplifyecommerce-practice-171921-authRole",
+            "UnauthRoleArn": "arn:aws:iam::309665100639:role/amplify-awsamplifyecommerce-practice-171921-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::309665100639:role/amplify-awsamplifyecommerce-practice-171921-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-awsamplifyecommerce-practice-171921-deployment",
+            "UnauthRoleName": "amplify-awsamplifyecommerce-practice-171921-unauthRole",
+            "StackName": "amplify-awsamplifyecommerce-practice-171921",
+            "StackId": "arn:aws:cloudformation:us-east-1:309665100639:stack/amplify-awsamplifyecommerce-practice-171921/4fc1b160-ea3d-11ea-913e-0e9c8848c400",
+            "AmplifyAppId": "d32w5wjrmpa28k"
+        },
+        "categories": {
+            "auth": {
+                "awsamplifyecommerceauth": {}
+            },
+            "function": {
+                "lambdaitems": {}
+            }
+        }
+    }
+}
